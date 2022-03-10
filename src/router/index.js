@@ -15,10 +15,11 @@ const routes = [
     component: Burgers
   },
   {
+    // Detalles de una hamburguesa
     path: '/hamburguesas/:id',
-    name: 'test',
+    name: 'data',
     component: BurgerData
-  }
+  },
 ]
 
 const router = createRouter({

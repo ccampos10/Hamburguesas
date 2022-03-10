@@ -1,9 +1,9 @@
 <template>
   <li class="hamburguesaLi">
     <router-link :to="'/hamburguesas/'+hamburguesa.id">
-      <h2>{{ hamburguesa.nombre }}</h2>
-      <p class="descripcion">{{ descripcion}}</p>
-      <p class="calorias">{{"Calorias: "+hamburguesa.calorias }}</p>
+      <h2 class="hamburguesaLi-nombre">{{ hamburguesa.nombre }}</h2>
+      <p class="hamburguesaLi-descripcion">{{ descripcion }}</p>
+      <p class="hamburguesaLi-calorias">{{"Calorias: "+hamburguesa.calorias }}</p>
     </router-link>
   </li>
 </template>
@@ -17,6 +17,7 @@ export default {
 
 
 <style>
+/* haburguesa Item List */
 .hamburguesaLi {
   list-style: none;
   text-align: left;
@@ -28,6 +29,7 @@ export default {
   border-radius: 10px;
   transition: all .7s ease;
 }
+/* Animacion de las targetas */
 .hamburguesaLi:hover {
   transform: scale(1.06);
   box-shadow: 3px 3px 15px;
@@ -37,16 +39,16 @@ export default {
   text-decoration: none;
 }
 
-h2 {
+.hamburguesaLi-nombre {
   font-size: 24px;
   color: #42b983;
 }
-.descripcion {
+.hamburguesaLi-descripcion {
   margin-left: 40px;
   font-size: 18px;
 }
 
-.calorias {
+.hamburguesaLi-calorias {
   text-align: right;
   color: #a8a8a8;
 }
