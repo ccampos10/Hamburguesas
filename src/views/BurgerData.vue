@@ -1,7 +1,7 @@
 <template>
   <div id="hamburguesaData">
     <!-- Formulario para editar una hamburguesa -->
-    <PopUp v-if="popUpEstaActivo" tipo="editar" :Hid="$route.params.id" />
+    <PopUp v-if="popUpEstaActivo" :tipo="tipo" :Hid="$route.params.id" />
 
     <h1 id="HD-nombre">{{hamburguesa.nombre}}</h1>
 
@@ -36,21 +36,18 @@ export default {
       hamburguesa: {id: -1, nombre: '...', ingredientes: [],calorias: -1},
       //Simulador de descripcion
       descripcion: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet enim mollitia quis ad sed, dolorum ipsum quod molestias odit dolorem eaque itaque sit est. Minus quasi laboriosam mollitia repellat quibusdam.",
-      popUpEstaActivo: false
+      popUpEstaActivo: false,
+      tipo: 'editar',
     }
   },
   methods: {
     Editar() {
+      this.tipo = 'editar';
       this.popUpEstaActivo = true;
     },
     Eliminar() {
-      // Eliminar la hamburguesa con el id
-      fetch('https://prueba-hamburguesas.herokuapp.com/burger/'+this.$route.params.id+'/', {method: "DELETE"})
-      .then(res => {
-        // Volver a /hamburguesas
-        if (res.status == 204) this.$router.push('/hamburguesas');
-      })
-      .catch(err => console.log(err));
+      this.tipo = 'confirmar';
+      this.popUpEstaActivo = true;
     },
     obtenerDatos() {
     // Pedir datos de hamburguesa

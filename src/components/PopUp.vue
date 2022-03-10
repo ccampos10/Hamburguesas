@@ -1,18 +1,21 @@
 <template>
-  <div id="PopUp" @click="popUpDisable($event, true)">
+  <div id="PopUp" @mousedown="popUpDisable($event, true)">
     <!-- Paner de edicion o creacion de hamburguesas dependiendo de 'tipo' -->
-    <BurgerDataEC :tipo="tipo" :Hid="Hid" />
+    <BurgerDataEC v-if="tipo == 'crear' || tipo == 'editar'" :tipo="tipo" :Hid="Hid" />
+    <ConfirmDelete v-else-if="tipo == 'confirmar'" />
   </div>
 </template>
 
 <script>
 import BurgerDataEC from "@/components/BurgerDataEC.vue"
+import ConfirmDelete from "@/components/ConfirmDelete.vue"
 
 export default {
   name: 'PopUp',
   props: ['tipo', 'Hid'],
   components: {
-    BurgerDataEC
+    BurgerDataEC,
+    ConfirmDelete
   },
   methods: {
     popUpDisable(e, esteElemento) {
