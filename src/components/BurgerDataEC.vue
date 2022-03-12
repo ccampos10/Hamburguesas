@@ -38,9 +38,13 @@ export default {
     Guardar(e) {
       // Guardar la hamburguesa con el id
       e.preventDefault();
+      const nombre = e.target['HE-nombre'].value;
+      const parseIngredientes = (e.target['HE-ingredientes'].value).replaceAll(', ', ',');
+      let ingredientes = parseIngredientes.split(',');
+
       let datos = {
-        nombre: e.target['HE-nombre'].value,
-        ingredientes: e.target['HE-ingredientes'].value.split(', '),
+        nombre: nombre,
+        ingredientes: ingredientes,
         calorias: e.target['HE-calorias'].value
       };
       let propiedades = this.tipo == 'editar' ? {id: this.Hid+'/', method: 'PUT'} : {id: '', method: 'POST'}
