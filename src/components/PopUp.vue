@@ -3,19 +3,22 @@
     <!-- Paner de edicion o creacion de hamburguesas dependiendo de 'tipo' -->
     <BurgerDataEC v-if="tipo == 'crear' || tipo == 'editar'" :tipo="tipo" :Hid="Hid" />
     <ConfirmDelete v-else-if="tipo == 'confirmar'" />
+    <Filtrar v-else-if="tipo == 'filtrar'" :ingredientes="ingredientes" />
   </div>
 </template>
 
 <script>
 import BurgerDataEC from "@/components/BurgerDataEC.vue"
 import ConfirmDelete from "@/components/ConfirmDelete.vue"
+import Filtrar from "@/components/Filtrar.vue"
 
 export default {
   name: 'PopUp',
-  props: ['tipo', 'Hid'],
+  props: ['tipo', 'Hid', 'ingredientes'],
   components: {
     BurgerDataEC,
-    ConfirmDelete
+    ConfirmDelete,
+    Filtrar,
   },
   methods: {
     popUpDisable(e, esteElemento) {
@@ -24,6 +27,9 @@ export default {
     },
     reload() {
       this.$parent.obtenerDatos();
+    },
+    filtrar(filtro) {
+      this.$parent.filtrar(filtro);
     }
   }
 }
