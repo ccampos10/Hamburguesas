@@ -61,7 +61,7 @@ export default {
       for (const elemento of res) {
         for (const ingrediente of elemento.ingredientes) {
           // Por cada ingrediente de cada elemento
-          let parseIngrediente = ingrediente.toLowerCase().replaceAll(' ','');
+          let parseIngrediente = ingrediente.toLowerCase();
           let estaEnLista = (listaIngredientes.findIndex(e => e == parseIngrediente)) != -1;
           if (!estaEnLista) listaIngredientes.push(parseIngrediente);
         }
@@ -76,14 +76,14 @@ export default {
         return nombre && maxCalorias;
       });
 
-      // Filtrar por los ingradientes
+      // Filtrar por los ingredientes
       filtrado = filtrado.filter(e => {
         let contIngredientes = false;
         if (filtro.ingredientes.length > 0) {
           for (const [i, filtroIngrediente] of filtro.ingredientes.entries()) {
             let parseFiltroIngrediente = filtroIngrediente.toLowerCase();
             // Contiene el ingrediente
-            let contieneIngrediente = (e.ingredientes.findIndex(ingrediente => ingrediente.toLowerCase().replaceAll(' ', '') == parseFiltroIngrediente)) != -1;
+            let contieneIngrediente = (e.ingredientes.findIndex(ingrediente => ingrediente.toLowerCase() == parseFiltroIngrediente)) != -1;
             
             if (contieneIngrediente && i == 0) contIngredientes = true;
             if (contieneIngrediente && i > 0) contIngredientes = false;
